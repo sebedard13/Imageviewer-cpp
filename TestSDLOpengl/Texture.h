@@ -1,35 +1,36 @@
 #pragma once
 #include <string>
 #include <SDL2/SDL_render.h>
+#include "Renderer.h"
 
-class Texture
-{
-public:
-	//Initializes variables
-	Texture();
 
-	//Deallocates memory
-	~Texture();
+namespace SDL_adaptater {
+	class Texture
+	{
+	public:
+		//Initializes variables
+		Texture();
 
-	//Loads image at specified path
-	bool loadFromFile(std::string path);
+		//Deallocates memory
+		~Texture();
 
-	//Deallocates texture
-	void free();
+		//Loads image at specified path
+		bool loadFromFile(Renderer&, std::string path);
 
-	//Renders texture at given point
-	void render(int x, int y);
+		//Deallocates texture
+		void free();
 
-	//Gets image dimensions
-	int getWidth();
-	int getHeight();
+		//Gets image dimensions
+		int getWidth();
+		int getHeight();
+		double getHWRatio();
 
-private:
-	//The actual hardware texture
-	SDL_Texture* mTexture;
-
-	//Image dimensions
-	int mWidth;
-	int mHeight;
-};
+		//The actual hardware texture
+		SDL_Texture* ptr;
+	private:
+		//Image dimensions
+		int mWidth;
+		int mHeight;
+	};
+}
 

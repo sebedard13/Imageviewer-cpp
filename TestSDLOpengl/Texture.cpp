@@ -1,23 +1,21 @@
 #include "Texture.h"
 #include <SDL2\SDL_image.h>
 
-extern SDL_Renderer* gRenderer;
-
-Texture::Texture()
+SDL_adaptater::Texture::Texture()
 {
 	//Initialize
-	mTexture = nullptr;
+	ptr = nullptr;
 	mWidth = 0;
 	mHeight = 0;
 }
 
-Texture::~Texture()
+SDL_adaptater::Texture::~Texture()
 {
 	//Deallocate
 	free();
 }
 
-bool Texture::loadFromFile(std::string path)
+bool SDL_adaptater::Texture::loadFromFile(Renderer& renderer, std::string path)
 {
 	//Get rid of preexisting texture
 	free();
@@ -35,7 +33,7 @@ bool Texture::loadFromFile(std::string path)
 		//Color key image
 		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 		//Create texture from surface pixels
-		newTexture = SDL_CreateTextureFromSurface(gRenderer, loadedSurface);
+		newTexture = SDL_CreateTextureFromSurface(renderer.ptr, loadedSurface);
 		if (newTexture == nullptr)
 		{
 			printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
@@ -52,36 +50,39 @@ bool Texture::loadFromFile(std::string path)
 	}
 
 	//Return success
-	mTexture = newTexture;
-	return mTexture != nullptr;
+	ptr = newTexture;
+	return ptr != nullptr;
 }
 
-void Texture::free()
+void SDL_adaptater::Texture::free()
 {
 	//Free texture if it exists
-	if (mTexture != nullptr)
+	if (ptr != nullptr)
 	{
-		SDL_DestroyTexture(mTexture);
-		mTexture = nullptr;
+		SDL_DestroyTexture(ptr);
+		ptr = nullptr;
 		mWidth = 0;
 		mHeight = 0;
 	}
 }
 
-
-void Texture::render(int x, int y)
-{
-	//Set rendering space and render to screen
-	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
-	SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
-}
-
-int Texture::getWidth()
+int SDL_adaptater::Texture::getWidth()
 {
 	return mWidth;
 }
 
-int Texture::getHeight()
+int SDL_adaptater::Texture::getHeight()
 {
 	return mHeight;
+}
+
+double SDL_adaptater::Texture::getHWRatio()
+{
+	if (mWidth !=0) {
+		return ((double)mHeight)/((double)mWidth);
+	}
+	else
+	{
+		return 0;
+	}
 }
