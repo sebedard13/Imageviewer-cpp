@@ -11,6 +11,8 @@ namespace SDL_adaptater {
 		//Initializes variables
 		Texture();
 
+		Texture(Texture&&);
+
 		//Deallocates memory
 		~Texture();
 

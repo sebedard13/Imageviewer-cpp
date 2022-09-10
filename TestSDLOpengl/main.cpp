@@ -11,14 +11,20 @@
 #include "SDL.h"
 #include "Window.h"
 #include "Renderer.h"
+#include <vector>
+#include <iostream>
+#include <filesystem>
+#include "Slide.h"
+namespace fs = std::filesystem;
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-
 int main(int argc, char* args[])
 {
+
+
 	namespace sdlA = SDL_adaptater;
 	sdlA::SDL sdl{};
 
@@ -27,7 +33,7 @@ int main(int argc, char* args[])
 	sdlA::Renderer renderer{ window };
 
 
-	sdlA::Texture g_texture{};
+	
 
 	//Main loop flag
 	bool quit = false;
@@ -35,6 +41,17 @@ int main(int argc, char* args[])
 	//Event handler
 	SDL_Event e;
 
+	std::vector<Slide> slides{};
+	
+	for (const auto& entry : fs::recursive_directory_iterator("data")) {
+		sdlA::Texture texture{};
+		texture.loadFromFile(renderer, entry.path().generic_string());
+		slides.push_back({ std::move(texture) , SCREEN_WIDTH, SCREEN_HEIGHT });
+	}
+
+
+
+	int slideIndex {0};
 	//While application is running
 	while (!quit)
 	{
@@ -52,10 +69,8 @@ int main(int argc, char* args[])
 				switch (e.key.keysym.sym)
 				{
 				case SDLK_k:
-					g_texture.loadFromFile(renderer, "data/Image.png");
 					break;
 				case SDLK_j:
-					g_texture.free();
 
 					break;
 
@@ -68,16 +83,14 @@ int main(int argc, char* args[])
 		SDL_SetRenderDrawColor(renderer.ptr, 0xFF, 0xFF, 0xFF, 0xFF);
 		SDL_RenderClear(renderer.ptr);
 
-		int width = g_texture.getWidth();
-		if (width != 0)
-		{
-			int height = round(SCREEN_WIDTH * g_texture.getHWRatio());
-			//Set rendering space and render to screen
-			SDL_Rect renderQuad { 0, (SCREEN_HEIGHT-height)/2, SCREEN_WIDTH,  height};
-			SDL_RenderCopy(renderer.ptr, g_texture.ptr, NULL, &renderQuad);
-		}
+		
+		Slide& slide = slides.front();
+		SDL_RenderCopy(renderer.ptr, 
+			slide.getTexture().ptr, NULL, 
+			slide.getBounds());
 		//Update screen
 		SDL_RenderPresent(renderer.ptr);
 	}
 	return 0;
 }
+

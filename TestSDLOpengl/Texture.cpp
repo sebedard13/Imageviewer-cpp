@@ -9,6 +9,13 @@ SDL_adaptater::Texture::Texture()
 	mHeight = 0;
 }
 
+SDL_adaptater::Texture::Texture(Texture&& texture)
+{
+	ptr =texture.ptr ;
+	texture.ptr = nullptr;
+
+}
+
 SDL_adaptater::Texture::~Texture()
 {
 	//Deallocate
