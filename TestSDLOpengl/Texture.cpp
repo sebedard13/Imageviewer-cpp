@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include <SDL2\SDL_image.h>
 
-SDL_adaptater::Texture::Texture()
+SDL_adapter::Texture::Texture()
 {
 	//Initialize
 	ptr = nullptr;
@@ -9,20 +9,13 @@ SDL_adaptater::Texture::Texture()
 	mHeight = 0;
 }
 
-SDL_adaptater::Texture::Texture(Texture&& texture)
-{
-	ptr =texture.ptr ;
-	texture.ptr = nullptr;
-
-}
-
-SDL_adaptater::Texture::~Texture()
+SDL_adapter::Texture::~Texture()
 {
 	//Deallocate
 	free();
 }
 
-bool SDL_adaptater::Texture::loadFromFile(Renderer& renderer, std::string path)
+bool SDL_adapter::Texture::loadFromFile(Renderer& renderer, std::string path)
 {
 	//Get rid of preexisting texture
 	free();
@@ -61,7 +54,7 @@ bool SDL_adaptater::Texture::loadFromFile(Renderer& renderer, std::string path)
 	return ptr != nullptr;
 }
 
-void SDL_adaptater::Texture::free()
+void SDL_adapter::Texture::free()
 {
 	//Free texture if it exists
 	if (ptr != nullptr)
@@ -73,20 +66,20 @@ void SDL_adaptater::Texture::free()
 	}
 }
 
-int SDL_adaptater::Texture::getWidth()
+int SDL_adapter::Texture::getWidth()
 {
 	return mWidth;
 }
 
-int SDL_adaptater::Texture::getHeight()
+int SDL_adapter::Texture::getHeight()
 {
 	return mHeight;
 }
 
-double SDL_adaptater::Texture::getHWRatio()
+double SDL_adapter::Texture::getHWRatio()
 {
-	if (mWidth !=0) {
-		return ((double)mHeight)/((double)mWidth);
+	if (mWidth != 0) {
+		return ((double)mHeight) / ((double)mWidth);
 	}
 	else
 	{

@@ -1,5 +1,5 @@
 #pragma once
-namespace SDL_adaptater {
+namespace SDL_adapter {
 
 	struct SDL_Exception {
 
@@ -11,24 +11,29 @@ namespace SDL_adaptater {
 	public:
 		explicit SDL();
 
+		SDL(const SDL& other) = delete;
+		SDL(SDL&& other) noexcept = delete;
+		SDL& operator=(const SDL& other) = delete;
+		SDL& operator=(SDL&& other) noexcept = delete;
+
 		~SDL();
 
 	};
 
 	enum SDL_INIT {
-		INIT_TIMER          =0x00000001u,
-		INIT_AUDIO          =0x00000010u,
-		INIT_VIDEO          =0x00000020u,  /**< SDL_INIT_VIDEO implies SDL_INIT_EVENTS */
-		INIT_JOYSTICK       =0x00000200u,  /**< SDL_INIT_JOYSTICK implies SDL_INIT_EVENTS */
-		INIT_HAPTIC         =0x00001000u,
-		INIT_GAMECONTROLLER =0x00002000u,  /**< SDL_INIT_GAMECONTROLLER implies SDL_INIT_JOYSTICK */
-		INIT_EVENTS         =0x00004000u,
-		INIT_SENSOR         =0x00008000u,
-		INIT_NOPARACHUTE    =0x00100000u,  /**< compatibility; this flag is ignored. */
+		INIT_TIMER = 0x00000001u,
+		INIT_AUDIO = 0x00000010u,
+		INIT_VIDEO = 0x00000020u,  /**< SDL_INIT_VIDEO implies SDL_INIT_EVENTS */
+		INIT_JOYSTICK = 0x00000200u,  /**< SDL_INIT_JOYSTICK implies SDL_INIT_EVENTS */
+		INIT_HAPTIC = 0x00001000u,
+		INIT_GAMECONTROLLER = 0x00002000u,  /**< SDL_INIT_GAMECONTROLLER implies SDL_INIT_JOYSTICK */
+		INIT_EVENTS = 0x00004000u,
+		INIT_SENSOR = 0x00008000u,
+		INIT_NOPARACHUTE = 0x00100000u,  /**< compatibility; this flag is ignored. */
 		INIT_EVERYTHING = (\
-			INIT_TIMER | INIT_AUDIO | INIT_VIDEO | INIT_EVENTS | \
+		INIT_TIMER | INIT_AUDIO | INIT_VIDEO | INIT_EVENTS | \
 			INIT_JOYSTICK | INIT_HAPTIC | INIT_GAMECONTROLLER | INIT_SENSOR \
-		)
+			)
 	};
 
 	enum IMG_INIT

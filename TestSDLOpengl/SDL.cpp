@@ -3,7 +3,7 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
-SDL_adaptater::SDL::SDL()
+SDL_adapter::SDL::SDL()
 {
 	
 	if (SDL_Init(SDL_INIT::INIT_VIDEO)< 0) {
@@ -26,7 +26,7 @@ SDL_adaptater::SDL::SDL()
 	
 }
 
-SDL_adaptater::SDL::~SDL()
+SDL_adapter::SDL::~SDL()
 {
 
 	IMG_Quit();

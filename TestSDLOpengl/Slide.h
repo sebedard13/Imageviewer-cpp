@@ -4,16 +4,37 @@ class Slide
 {
 
 public:
-	Slide(SDL_adaptater::Texture texture, const int& width, const int& height);
+	Slide(SDL_adapter::Texture&& texture, const int& width, const int& height);
 
-	SDL_adaptater::Texture getTexture() const;
+	Slide(const Slide& other) = delete;
+
+	Slide(Slide&& other) noexcept
+		: texture(std::move(other.texture)),
+		bounds(other.bounds)
+	{
+
+	}
+
+	Slide& operator=(const Slide& other) = delete;
+
+	Slide& operator=(Slide&& other) noexcept
+	{
+		if (this == &other)
+			return *this;
+		texture = std::move(other.texture);
+
+		bounds = other.bounds;
+		return *this;
+	}
+
+	SDL_adapter::Texture& getTexture();
 
 	SDL_Rect* getBounds();
 
 	~Slide();
 
 private:
-	SDL_adaptater::Texture texture;
-	SDL_Rect* bounds;
+	SDL_adapter::Texture texture;
+	SDL_Rect bounds;
 };
 

@@ -2,7 +2,7 @@
 #include <SDL2/SDL_render.h>
 #include "Window.h"
 
-namespace SDL_adaptater {
+namespace SDL_adapter {
 	struct Renderer_Exception {
 
 	};
@@ -11,6 +11,11 @@ namespace SDL_adaptater {
 	{
 	public:
 		Renderer(const Window&);
+
+		Renderer(const Renderer& other) = delete;
+		Renderer(Renderer&& other) noexcept = delete;
+		Renderer& operator=(const Renderer& other) = delete;
+		Renderer& operator=(Renderer&& other) noexcept = delete;
 
 		~Renderer();
 

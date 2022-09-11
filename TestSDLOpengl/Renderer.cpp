@@ -2,7 +2,7 @@
 
 
 #include<iostream>
-SDL_adaptater::Renderer::Renderer(const Window& window)
+SDL_adapter::Renderer::Renderer(const Window& window)
 {
 	ptr = SDL_CreateRenderer(window.ptr, -1, SDL_RENDERER_ACCELERATED);
 	if (!ptr) {
@@ -11,6 +11,6 @@ SDL_adaptater::Renderer::Renderer(const Window& window)
 	}
 }
 
-SDL_adaptater::Renderer::~Renderer()
+SDL_adapter::Renderer::~Renderer()
 {
 }

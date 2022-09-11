@@ -2,7 +2,7 @@
 
 #include<iostream>
 
-SDL_adaptater::Window::Window(const std::string& title, const int& width, const int& height)
+SDL_adapter::Window::Window(const std::string& title, const int& width, const int& height)
 {
     ptr = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
         SDL_WINDOW_SHOWN | 
@@ -16,7 +16,7 @@ SDL_adaptater::Window::Window(const std::string& title, const int& width, const 
     }
 }
 
-SDL_adaptater::Window::~Window()
+SDL_adapter::Window::~Window()
 {
     SDL_DestroyWindow(ptr);
     ptr = nullptr;
