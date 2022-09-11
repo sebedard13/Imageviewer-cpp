@@ -1,23 +1,15 @@
 #pragma once
 namespace SDL_adapter {
 
-	struct SDL_Exception {
-
-	};
-
-
 	class SDL
 	{
 	public:
 		explicit SDL();
-
 		SDL(const SDL& other) = delete;
 		SDL(SDL&& other) noexcept = delete;
 		SDL& operator=(const SDL& other) = delete;
 		SDL& operator=(SDL&& other) noexcept = delete;
-
 		~SDL();
-
 	};
 
 	enum SDL_INIT {

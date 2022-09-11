@@ -3,10 +3,6 @@
 #include <SDL2/SDL_video.h>
 
 namespace SDL_adapter {
-	struct Window_Exception {
-
-	};
-
 	class Window
 	{
 	public:

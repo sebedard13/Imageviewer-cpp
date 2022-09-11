@@ -3,15 +3,32 @@
 
 SDL_adapter::Texture::Texture()
 {
-	//Initialize
 	ptr = nullptr;
 	mWidth = 0;
 	mHeight = 0;
 }
 
+SDL_adapter::Texture::Texture(Texture&& other) noexcept
+	: ptr(other.ptr),
+	mWidth(other.mWidth),
+	mHeight(other.mHeight)
+{
+	other.ptr = nullptr;
+}
+
+SDL_adapter::Texture& SDL_adapter::Texture::operator=(Texture&& other) noexcept
+{
+	if (this == &other)
+		return *this;
+	ptr = other.ptr;
+	mWidth = other.mWidth;
+	mHeight = other.mHeight;
+	other.ptr = nullptr;
+	return *this;
+}
+
 SDL_adapter::Texture::~Texture()
 {
-	//Deallocate
 	free();
 }
 
@@ -56,7 +73,6 @@ bool SDL_adapter::Texture::loadFromFile(Renderer& renderer, std::string path)
 
 void SDL_adapter::Texture::free()
 {
-	//Free texture if it exists
 	if (ptr != nullptr)
 	{
 		SDL_DestroyTexture(ptr);
@@ -66,17 +82,17 @@ void SDL_adapter::Texture::free()
 	}
 }
 
-int SDL_adapter::Texture::getWidth()
+int SDL_adapter::Texture::getWidth() const
 {
 	return mWidth;
 }
 
-int SDL_adapter::Texture::getHeight()
+int SDL_adapter::Texture::getHeight() const
 {
 	return mHeight;
 }
 
-double SDL_adapter::Texture::getHWRatio()
+double SDL_adapter::Texture::getHWRatio() const
 {
 	if (mWidth != 0) {
 		return ((double)mHeight) / ((double)mWidth);
