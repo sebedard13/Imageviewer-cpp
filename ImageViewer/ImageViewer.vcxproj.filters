@@ -18,16 +18,16 @@
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="SDL_adapter\Texture.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="SDL.cpp">
+    <ClCompile Include="SDL_adapter\SDL.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
+    <ClCompile Include="SDL_adapter\Window.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
+    <ClCompile Include="SDL_adapter\Renderer.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Slide.cpp">
@@ -38,16 +38,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="SDL_adapter\Texture.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="SDL.h">
+    <ClInclude Include="SDL_adapter\SDL.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Window.h">
+    <ClInclude Include="SDL_adapter\Window.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="SDL_adapter\Renderer.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Slide.h">
@@ -56,5 +56,19 @@
     <ClInclude Include="Index.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\1024px-Android_O_Preview_Logo.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="data\Image.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="data\media_1b0ad89a4a5ad233f5708e21b5998d6638cb07929.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="data\png-transparent-logo-contracting-photography-logo-symbol.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
 </Project>

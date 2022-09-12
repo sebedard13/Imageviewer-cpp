@@ -1,12 +1,11 @@
-//Using SDL and standard IO
-#include <SDL2\SDL.h>
-
+#include <SDL2/SDL.h>
+//Because SDL2 define a main and cause problem for visual studio
 #undef main
 
-#include "Texture.h"
-#include "SDL.h"
-#include "Window.h"
-#include "Renderer.h"
+#include "SDL_adapter/Texture.h"
+#include "SDL_adapter/SDL.h"
+#include "SDL_adapter/Window.h"
+#include "SDL_adapter/Renderer.h"
 #include <vector>
 #include <filesystem>
 
@@ -22,7 +21,7 @@ int main(int argc, char* args[])
 	namespace sdl = SDL_adapter;
 	sdl::SDL sdlInit{};
 
-	const sdl::Window window{ "Slide Show", SCREEN_WIDTH, SCREEN_HEIGHT };
+	const sdl::Window window{ "Image Viewer", SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	sdl::Renderer renderer{ window };
 	renderer.setDrawColor(0xFF, 0xFF, 0xFF, 0xFF);

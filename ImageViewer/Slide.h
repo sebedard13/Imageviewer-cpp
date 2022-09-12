@@ -1,5 +1,5 @@
 #pragma once
-#include "Texture.h"
+#include "SDL_adapter/Texture.h"
 class Slide
 {
 

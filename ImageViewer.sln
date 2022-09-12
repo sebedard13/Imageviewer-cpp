@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestSDLOpengl", "TestSDLOpengl\TestSDLOpengl.vcxproj", "{FD276BBD-BC49-469C-845E-08689BEEC1B8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageViewer", "ImageViewer\ImageViewer.vcxproj", "{FD276BBD-BC49-469C-845E-08689BEEC1B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
