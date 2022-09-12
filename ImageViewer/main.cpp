@@ -58,11 +58,13 @@ int main(int argc, char* args[])
 			{
 				switch (e.key.keysym.sym)
 				{
-				case SDLK_k:
+				case SDLK_RIGHT:
+				case SDLK_d:
 					slideIndex.next();
 					draw = true;
 					break;
-				case SDLK_j:
+				case SDLK_LEFT:
+				case SDLK_a:
 					slideIndex.previous();
 					draw = true;
 					break;
